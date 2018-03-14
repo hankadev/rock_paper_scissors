@@ -13,6 +13,8 @@
   }
 
   function playRound(playerSelection, computerSelection) {
+    console.log("player: ", playerSelection);
+    console.log("computer: ", computerSelection)
     if (playerSelection === computerSelection) {
       return "Tie!"
     } else if (playerSelection === "rock") {
@@ -36,8 +38,11 @@
     }
   }
 
-  const playerSelection = "scissors";
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
+  const rock = document.querySelector(".rock");
+  rock.addEventListener("click", () => playRound("rock", computerPlay()));
+  const paper = document.querySelector(".paper");
+  paper.addEventListener("click", () => playRound("paper", computerPlay()));
+  const scissors = document.querySelector(".scissors");
+  scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
 
 }());

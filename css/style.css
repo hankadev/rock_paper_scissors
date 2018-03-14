@@ -24,7 +24,7 @@ button {
   border-radius: 5px;
 }
 
-button:hover, button:focus {
+button:hover {
   background-color: #77a;
   border: 3px solid #abd;
 }
