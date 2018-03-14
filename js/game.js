@@ -1,6 +1,13 @@
 (function() {
   "use strict";
 
+  const rock = document.querySelector(".rock");
+  const paper = document.querySelector(".paper");
+  const scissors = document.querySelector(".scissors");
+  let playerScore = 0;
+  let computerScore = 0;
+  let message = "";
+
   function computerPlay() {
     const randInt = Math.floor(Math.random() * 3);
     if (randInt === 1) {
@@ -13,36 +20,75 @@
   }
 
   function playRound(playerSelection, computerSelection) {
-    console.log("player: ", playerSelection);
-    console.log("computer: ", computerSelection)
+    document.querySelector(".winner").textContent = "";
     if (playerSelection === computerSelection) {
-      return "Tie!"
+      message = "Tie!"
     } else if (playerSelection === "rock") {
       if (computerSelection === "paper") {
-        return "You lost! Paper beats rock."
+        computerScore += 1;
+        message = "Paper beats rock.";
       } else {
-        return "You won! Rock beats scissors."
+        playerScore += 1;
+        message = "Rock beats scissors."
       }
     } else if (playerSelection === "paper") {
       if (computerSelection === "rock") {
-        return "You won! Paper beats rock."
+        playerScore += 1;
+        message = "Paper beats rock."
       } else {
-        return "You lost! Scissors beats paper."
+        computerScore += 1;
+        message = "Scissors beats paper."
       }
     } else {
       if (computerSelection === "rock") {
-        return "You lost! Rock beats scissors."
+        computerScore += 1;
+        message = "Rock beats scissors."
       } else {
-        return "You won! Scissors beats paper."
+        playerScore += 1;
+        message = "Scissors beats paper."
       }
     }
+
+    const playerChoice = document.querySelector(".playerChoice");
+    playerChoice.textContent = playerSelection;
+    const computerChoice = document.querySelector(".computerChoice");
+    computerChoice.textContent = computerSelection;
+    const result = document.querySelector(".result");
+    result.textContent = message;
+
+    const player = document.querySelector(".player");
+    player.textContent = playerScore;
+    const computer = document.querySelector(".computer");
+    computer.textContent = computerScore;
+    gameOver(playerScore, computerScore);
   }
 
-  const rock = document.querySelector(".rock");
-  rock.addEventListener("click", () => playRound("rock", computerPlay()));
-  const paper = document.querySelector(".paper");
-  paper.addEventListener("click", () => playRound("paper", computerPlay()));
-  const scissors = document.querySelector(".scissors");
-  scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
+  function gameOver(playerScore, computerScore) {
+    if (playerScore === 5) {
+      document.querySelector(".winner").textContent = "You won the game!";
+      replay();
+    }
+    if (computerScore === 5) {
+      document.querySelector(".winner").textContent = "You lost the game!";
+      replay();
+    }
+
+  }
+
+  function replay() {
+    playerScore = 0;
+    computerScore = 0;
+    message = "";
+  }
+
+  function game() {
+    rock.addEventListener("click", () => playRound("rock", computerPlay()));
+    paper.addEventListener("click", () => playRound("paper", computerPlay()));
+    scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    game();
+  });
 
 }());
