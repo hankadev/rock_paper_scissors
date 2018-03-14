@@ -28,3 +28,12 @@ button:hover {
   background-color: #77a;
   border: 3px solid #abd;
 }
+
+.result, .winner {
+  color: #b12;
+  font-size: 1.5rem;
+}
+
+p {
+  font-weight: bold;
+}
