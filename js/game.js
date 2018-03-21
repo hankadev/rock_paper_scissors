@@ -1,6 +1,5 @@
 (function() {
   "use strict";
-
   const rock = document.querySelector(".rock");
   const paper = document.querySelector(".paper");
   const scissors = document.querySelector(".scissors");
@@ -22,40 +21,38 @@
   function playRound(playerSelection, computerSelection) {
     document.querySelector(".winner").textContent = "";
     if (playerSelection === computerSelection) {
-      message = "Tie!"
+      message = "Tie!";
     } else if (playerSelection === "rock") {
       if (computerSelection === "paper") {
         computerScore += 1;
         message = "Paper beats rock.";
       } else {
         playerScore += 1;
-        message = "Rock beats scissors."
+        message = "Rock beats scissors.";
       }
     } else if (playerSelection === "paper") {
       if (computerSelection === "rock") {
         playerScore += 1;
-        message = "Paper beats rock."
+        message = "Paper beats rock.";
       } else {
         computerScore += 1;
-        message = "Scissors beats paper."
+        message = "Scissors beats paper.";
       }
     } else {
       if (computerSelection === "rock") {
         computerScore += 1;
-        message = "Rock beats scissors."
+        message = "Rock beats scissors.";
       } else {
         playerScore += 1;
-        message = "Scissors beats paper."
+        message = "Scissors beats paper.";
       }
     }
-
     const playerChoice = document.querySelector(".playerChoice");
     playerChoice.textContent = playerSelection;
     const computerChoice = document.querySelector(".computerChoice");
     computerChoice.textContent = computerSelection;
     const result = document.querySelector(".result");
     result.textContent = message;
-
     const player = document.querySelector(".player");
     player.textContent = playerScore;
     const computer = document.querySelector(".computer");
@@ -72,7 +69,6 @@
       document.querySelector(".winner").textContent = "You lost the game!";
       replay();
     }
-
   }
 
   function replay() {
@@ -86,9 +82,7 @@
     paper.addEventListener("click", () => playRound("paper", computerPlay()));
     scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
   }
-
   document.addEventListener("DOMContentLoaded", function() {
     game();
   });
-
 }());
